@@ -1,0 +1,4206 @@
+:root {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #efe8d0;
+  background: #070b0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(45, 62, 50, 0.18), transparent 42%),
+    #080a09;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.58), transparent 18% 82%, rgba(0, 0, 0, 0.62)),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.015) 0 1px, transparent 1px 56px);
+  mix-blend-mode: screen;
+  opacity: 0.35;
+}
+
+.appShell {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.phoneFrame {
+  position: relative;
+  width: min(430px, 100%);
+  min-height: min(890px, calc(100svh - 36px));
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  overflow: hidden;
+  border: 1px solid #3a3428;
+  border-radius: 14px;
+  background: #0b0d0c;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: calc(18px + env(safe-area-inset-top, 0px)) 18px 12px;
+  border-bottom: 1px solid #3a3428;
+  background: #12100c;
+}
+
+.identity {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.identity strong,
+.sectionHeader strong {
+  display: block;
+  color: #fff4cd;
+  font-size: 16px;
+  line-height: 1.12;
+  text-shadow: 0 1px 10px rgba(232, 193, 101, 0.18);
+}
+
+.avatar,
+.portrait {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(229, 199, 119, 0.76);
+  background:
+    radial-gradient(circle at 50% 46%, rgba(44, 80, 65, 0.95), rgba(8, 18, 18, 0.96) 62%),
+    #10201d;
+  color: #f1d583;
+  font-weight: 900;
+  box-shadow:
+    0 0 0 3px rgba(16, 25, 21, 0.9),
+    0 0 0 5px rgba(198, 154, 67, 0.32),
+    inset 0 0 18px rgba(225, 198, 119, 0.18);
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 22px;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+}
+
+.avatar img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 7px 6px rgba(0, 0, 0, 0.62))
+    drop-shadow(0 0 8px rgba(124, 216, 137, 0.24));
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 3px;
+  color: #a89878;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.resources {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 7px;
+  color: #f0dfae;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.resources span {
+  border: 1px solid #3a3428;
+  border-radius: 2px;
+  background: #161310;
+  padding: 7px 10px;
+}
+
+.resources .coinBalance {
+  color: #f1d37e;
+}
+
+.coinBalance b {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.coinBalance img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.resources .stepsPlaque {
+  border: 1px solid #3a3428;
+  border-radius: 2px;
+  background: #161310;
+  padding: 7px 10px;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.resources .stepsPlaque[aria-expanded='true'] {
+  border-color: #8a7440;
+}
+
+.stepsDetail {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(7, 12, 12, 0.92);
+  border-bottom: 1px solid rgba(210, 181, 107, 0.18);
+}
+
+.stepsDetail span {
+  display: grid;
+  gap: 2px;
+  text-align: center;
+  border: 1px solid rgba(210, 181, 107, 0.2);
+  border-radius: 7px;
+  background: rgba(10, 15, 15, 0.74);
+  padding: 6px 4px;
+}
+
+.stepsDetail small {
+  color: #aaa28a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stepsDetail strong {
+  color: #fff0bd;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 13px;
+}
+
+.routeConfirm {
+  display: grid;
+  gap: 8px;
+}
+
+.routeConfirm p {
+  margin: 0;
+  color: #cfc5a4;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.routeConfirmButtons {
+  display: flex;
+  gap: 7px;
+}
+
+.eveningStats {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.eveningStats span {
+  display: grid;
+  gap: 2px;
+  text-align: center;
+  border: 1px solid rgba(210, 181, 107, 0.22);
+  border-radius: 7px;
+  background: rgba(10, 15, 15, 0.74);
+  padding: 8px 5px;
+}
+
+.eveningStats small {
+  color: #aaa28a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.eveningStats strong {
+  color: #fff0bd;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+.eveningRoute,
+.eveningStones {
+  margin: 0;
+  width: 100%;
+  color: #b8b09a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.eveningStones {
+  color: #9fc8a8;
+}
+
+.streakPanel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid rgba(210, 181, 107, 0.24);
+  border-radius: 9px;
+  background: rgba(10, 15, 15, 0.74);
+  padding: 11px 12px;
+}
+
+.streakPanel strong {
+  display: block;
+  color: #fff0bd;
+  font-size: 14px;
+}
+
+.streakStones {
+  border: 1px solid rgba(139, 222, 157, 0.34);
+  border-radius: 999px;
+  background: rgba(18, 43, 34, 0.72);
+  color: #ddefc5;
+  padding: 6px 10px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.nightMorningNote {
+  margin: 0;
+  width: 100%;
+  border-left: 2px solid rgba(139, 222, 157, 0.5);
+  background: rgba(8, 15, 15, 0.62);
+  padding: 8px 10px;
+  color: #b8d4b6;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.levelTrack,
+.stepBar {
+  height: 5px;
+  overflow: hidden;
+  background: rgba(220, 215, 190, 0.12);
+}
+
+.levelTrack span,
+.stepBar span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #7cd889, #d9c16f 58%, #f5e7ad);
+  box-shadow: 0 0 12px rgba(124, 216, 137, 0.38);
+}
+
+.contentPane {
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(213, 184, 105, 0.36) transparent;
+}
+
+.mapArea {
+  position: relative;
+  height: 430px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(215, 184, 103, 0.22);
+  background:
+    linear-gradient(180deg, rgba(6, 10, 10, 0.04), rgba(4, 8, 8, 0.42) 54%, rgba(4, 8, 8, 0.92)),
+    radial-gradient(ellipse at 48% 35%, rgba(120, 150, 108, 0.22), transparent 32%),
+    radial-gradient(ellipse at 52% 108%, rgba(25, 73, 54, 0.58), transparent 42%),
+    linear-gradient(110deg, rgba(5, 10, 10, 0.86) 0 22%, transparent 35% 64%, rgba(3, 7, 7, 0.86) 82%),
+    repeating-linear-gradient(102deg, rgba(13, 28, 24, 0.95) 0 18px, rgba(6, 12, 12, 0.95) 18px 31px);
+}
+
+.mapArea::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 47% 88%, rgba(220, 202, 138, 0.22), transparent 11%),
+    radial-gradient(ellipse at 47% 74%, rgba(210, 195, 135, 0.14), transparent 12%),
+    radial-gradient(ellipse at 47% 61%, rgba(210, 195, 135, 0.1), transparent 13%),
+    linear-gradient(88deg, transparent 0 36%, rgba(160, 142, 102, 0.16) 45%, rgba(226, 214, 160, 0.25) 50%, rgba(160, 142, 102, 0.14) 55%, transparent 66%);
+  clip-path: polygon(38% 100%, 44% 72%, 46% 56%, 48% 39%, 52% 39%, 55% 60%, 61% 100%);
+  opacity: 0.92;
+}
+
+.mapArea::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 19% 32%, rgba(242, 167, 72, 0.26), transparent 5%),
+    radial-gradient(circle at 50% 84%, rgba(119, 255, 141, 0.16), transparent 12%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.68));
+  pointer-events: none;
+}
+
+.mapMist {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(18deg, transparent 0 35%, rgba(230, 236, 208, 0.1) 45%, transparent 55%),
+    radial-gradient(ellipse at 50% 56%, transparent 0 30%, rgba(0, 0, 0, 0.24) 66%);
+  opacity: 0.85;
+}
+
+.pathLine {
+  position: absolute;
+  left: 15%;
+  right: 12%;
+  top: 57%;
+  z-index: 2;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(235, 221, 162, 0.18), rgba(235, 221, 162, 0.78), rgba(235, 221, 162, 0.34));
+  box-shadow: 0 0 14px rgba(226, 206, 136, 0.22);
+  transform: rotate(-17deg);
+}
+
+.trailDots {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.trailDots span {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f4e9bc;
+  box-shadow: 0 0 13px rgba(236, 224, 172, 0.76);
+}
+
+.trailDots span:nth-child(1) {
+  left: 43%;
+  top: 78%;
+}
+
+.trailDots span:nth-child(2) {
+  left: 45%;
+  top: 72%;
+}
+
+.trailDots span:nth-child(3) {
+  left: 47%;
+  top: 66%;
+}
+
+.trailDots span:nth-child(4) {
+  left: 49%;
+  top: 60%;
+}
+
+.trailDots span:nth-child(5) {
+  left: 50%;
+  top: 54%;
+}
+
+.trailDots span:nth-child(6) {
+  left: 51%;
+  top: 48%;
+}
+
+.trailDots span:nth-child(7) {
+  left: 52%;
+  top: 42%;
+}
+
+.node {
+  position: absolute;
+  z-index: 4;
+  min-width: 78px;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid rgba(219, 188, 109, 0.42);
+  border-radius: 4px;
+  background:
+    linear-gradient(180deg, rgba(17, 22, 20, 0.92), rgba(7, 11, 11, 0.9)),
+    rgba(12, 18, 17, 0.85);
+  color: #f0dfae;
+  padding: 7px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.36),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  text-shadow: 0 1px 3px #000;
+}
+
+.nodeIcon {
+  color: #9fe28c;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.node.done {
+  border-color: rgba(232, 202, 120, 0.82);
+  background:
+    linear-gradient(180deg, rgba(91, 72, 33, 0.96), rgba(41, 30, 15, 0.94)),
+    #3a2a12;
+}
+
+.nodeStart {
+  left: 14%;
+  top: 41%;
+}
+
+.nodeMine {
+  right: 16%;
+  top: 46%;
+}
+
+.nodeGate {
+  left: 15%;
+  top: 70%;
+}
+
+.nodeChest {
+  right: 11%;
+  top: 68%;
+}
+
+.heroMarker {
+  position: absolute;
+  z-index: 5;
+  top: 76%;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(178, 244, 148, 0.8);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(145, 236, 120, 0.18), rgba(8, 14, 13, 0.84) 62%),
+    #09100f;
+  color: #d8c57e;
+  font-size: 25px;
+  box-shadow:
+    0 0 0 8px rgba(101, 226, 112, 0.1),
+    0 0 24px rgba(101, 226, 112, 0.32);
+  transform: translate(-50%, -50%);
+}
+
+.locationBadge {
+  position: absolute;
+  z-index: 6;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  border: 1px solid rgba(219, 188, 109, 0.34);
+  border-radius: 4px;
+  background:
+    linear-gradient(180deg, rgba(12, 18, 18, 0.9), rgba(4, 8, 8, 0.94)),
+    rgba(8, 13, 13, 0.9);
+  padding: 11px 12px;
+  color: #f5e7ba;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.34),
+    inset 0 0 18px rgba(214, 184, 103, 0.05);
+}
+
+.todayPanel,
+.screenStack {
+  padding: 18px;
+}
+
+.todayPanel {
+  background:
+    linear-gradient(180deg, rgba(9, 15, 15, 0.98), rgba(6, 10, 10, 0.98)),
+    radial-gradient(circle at 18% 0%, rgba(116, 186, 103, 0.1), transparent 30%);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  color: #fff8dd;
+  font-size: 31px;
+  line-height: 1;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.44);
+}
+
+h2 {
+  color: #ead194;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.muted,
+.systemNote,
+.successNote,
+.emptyState p,
+.upgrade p {
+  color: #b8b09a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 13px;
+  line-height: 1.38;
+}
+
+.stepBar {
+  height: 8px;
+  border: 1px solid #3a3428;
+  border-radius: 2px;
+  background: #1c1914;
+}
+
+.rewardPreview,
+.characterPanel,
+.heroLevelPanel,
+.evolutionPanel,
+.abilitiesPanel,
+.notificationSettings,
+.upgrade,
+.historyRow,
+.heroInfoGrid > div,
+.reportForm {
+  border: 1px solid #3a3428;
+  border-radius: 2px;
+  background: #12100c;
+  box-shadow: none;
+}
+
+.rewardPreview {
+  display: grid;
+  gap: 6px;
+  margin: 15px 0;
+  padding: 14px;
+}
+
+.rewardPreview span {
+  color: #b8b09a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.rewardPreview strong {
+  color: #f4df98;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.systemNote {
+  margin-top: 11px;
+  max-width: 100%;
+}
+
+.successNote {
+  margin-top: 12px;
+  color: #bfe9ab;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 4px;
+  padding: 11px 12px;
+  font-weight: 700;
+}
+
+.primaryBtn {
+  border: 1px solid #8a7440;
+  border-radius: 2px;
+  background: #1c1810;
+  color: #e2d3a4;
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: 0.08em;
+  box-shadow: none;
+}
+
+.primaryBtn:disabled {
+  opacity: 0.45;
+}
+
+.secondaryBtn {
+  border: 1px solid #3a3428;
+  border-radius: 2px;
+  background: #12100c;
+  color: #a89878;
+}
+
+.compact {
+  width: auto;
+  min-width: 96px;
+  min-height: 36px;
+  padding: 7px 10px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+}
+
+.reportForm {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  color: #e2d6b4;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid rgba(219, 188, 109, 0.28);
+  border-radius: 4px;
+  background: #101817;
+  color: #f1e8c9;
+  padding: 8px 10px;
+}
+
+.splitActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.characterPanel {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 15px;
+  align-items: center;
+  padding: 15px;
+}
+
+.portrait {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  font-size: 42px;
+}
+
+.heroPortrait {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 58%, rgba(120, 217, 145, 0.2), transparent 52%),
+    radial-gradient(circle at 50% 42%, rgba(232, 207, 130, 0.18), transparent 44%),
+    #07100f;
+}
+
+.heroPortrait img {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 10px 9px rgba(0, 0, 0, 0.66))
+    drop-shadow(0 0 12px rgba(122, 217, 147, 0.28));
+}
+
+.heroLevelPanel,
+.evolutionPanel,
+.abilitiesPanel {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 14px;
+}
+
+.heroLevelPanel > div:first-child {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.heroLevelPanel strong,
+.evolutionPanel strong,
+.abilitiesPanel strong {
+  color: #efd591;
+  font-size: 15px;
+}
+
+.heroXpTrack {
+  height: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(230, 221, 181, 0.14);
+  border-radius: 999px;
+  background: rgba(210, 211, 189, 0.12);
+}
+
+.heroXpTrack span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #77d98b, #dfc56f 62%, #fff1b9);
+  box-shadow: 0 0 14px rgba(124, 216, 137, 0.4);
+}
+
+.heroLevelPanel small {
+  color: #aaa28a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.heroInfoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.heroInfoGrid > div {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+}
+
+.heroInfoGrid span,
+.historyRow span,
+.historyRow small {
+  color: #aaa28a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+}
+
+.heroInfoGrid strong {
+  color: #f1d990;
+  font-size: 21px;
+}
+
+.heroInfoGrid small,
+.abilitiesPanel p,
+.evolutionPanel p,
+.abilityList p {
+  color: #b8b09a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.panelTitleRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.panelTitleRow .compact {
+  min-width: 128px;
+  white-space: nowrap;
+}
+
+.panelActionGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.panelActionGroup .compact {
+  min-width: 0;
+}
+
+.evolutionOverlay {
+  z-index: 52;
+}
+
+.evolutionTreeModal {
+  width: min(398px, 100%);
+  gap: 11px;
+}
+
+.shardLedger,
+.evolutionShardStatus {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.evolutionShardStatus {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.shardLedger span,
+.evolutionShardStatus span {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+  border: 1px solid rgba(208, 190, 128, 0.22);
+  border-radius: 7px;
+  background: rgba(7, 13, 13, 0.72);
+  color: #aaa28a;
+  padding: 8px 6px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.shardLedger strong,
+.evolutionShardStatus strong {
+  color: #fff0bd;
+  font-size: 15px;
+}
+
+.evolutionFateMap {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+}
+
+.evolutionTrunk {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  padding-bottom: 10px;
+}
+
+.evolutionTrunk::after {
+  content: '';
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(136, 222, 157, 0.62), transparent);
+  box-shadow: 0 0 14px rgba(136, 222, 157, 0.24);
+}
+
+.futureBranches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.evolutionNode {
+  min-height: 60px;
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  border: 1px solid rgba(193, 176, 116, 0.24);
+  border-radius: 8px;
+  background: rgba(8, 14, 14, 0.82);
+  color: #ead79c;
+  padding: 8px;
+  text-align: left;
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.02);
+}
+
+.evolutionNode.current {
+  border-color: rgba(139, 222, 157, 0.72);
+  background: rgba(18, 43, 34, 0.86);
+}
+
+.evolutionNode.near {
+  border-color: rgba(224, 195, 111, 0.72);
+  box-shadow: 0 0 18px rgba(224, 195, 111, 0.16), inset 0 0 18px rgba(255, 255, 255, 0.02);
+}
+
+.evolutionNode.closed {
+  border-color: rgba(125, 159, 167, 0.32);
+}
+
+.evolutionNode.dark {
+  border-color: rgba(161, 95, 116, 0.38);
+}
+
+.evolutionNode.light {
+  border-color: rgba(127, 181, 151, 0.4);
+}
+
+.evolutionNode.distant {
+  opacity: 0.82;
+}
+
+.evolutionNode.selected {
+  border-color: #8dde9a;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(224, 195, 111, 0.13), transparent 42%),
+    rgba(18, 43, 34, 0.94);
+}
+
+.evolutionNode strong {
+  color: #fff0bd;
+  font-size: 13px;
+  line-height: 1.05;
+}
+
+.evolutionNode span {
+  color: #aaa28a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.evolutionBranchDetails {
+  width: 100%;
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(139, 222, 157, 0.24);
+  border-radius: 8px;
+  background: rgba(4, 9, 9, 0.62);
+  padding: 11px;
+  text-align: left;
+}
+
+.evolutionBranchDetails strong {
+  color: #efd591;
+  font-size: 18px;
+}
+
+.evolutionBranchDetails p,
+.evolutionSkillThreads p {
+  margin: 0;
+  color: #b8b09a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.evolutionConditionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.evolutionConditionGrid > div {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  border-left: 2px solid rgba(123, 211, 143, 0.48);
+  background: rgba(8, 15, 15, 0.62);
+  padding: 8px;
+}
+
+.evolutionConditionGrid > div:last-child {
+  border-left-color: rgba(202, 143, 105, 0.56);
+}
+
+.evolutionConditionGrid span {
+  color: #efd591;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.evolutionBranchDetails ul,
+.evolutionConditionGrid ul {
+  margin: 0;
+  padding-left: 15px;
+  color: #c1baa5;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.evolutionSkillThreads {
+  width: 100%;
+  display: grid;
+  gap: 7px;
+  border: 1px solid rgba(119, 151, 173, 0.26);
+  border-radius: 8px;
+  background: rgba(6, 12, 14, 0.64);
+  padding: 10px;
+  text-align: left;
+}
+
+.skillThreadList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skillThreadList span {
+  border: 1px solid rgba(139, 222, 157, 0.34);
+  border-radius: 999px;
+  background: rgba(18, 43, 34, 0.72);
+  color: #ddefc5;
+  padding: 5px 8px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.fateTreeModal {
+  position: relative;
+  overflow: hidden;
+}
+
+.fateTrunk {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+}
+
+.fateTrunkStep {
+  display: grid;
+  justify-items: center;
+}
+
+.fateTrunkLink {
+  width: 1px;
+  height: 16px;
+  background: rgba(125, 159, 167, 0.35);
+}
+
+.fateTrunkLink.done {
+  background: rgba(139, 222, 157, 0.75);
+  box-shadow: 0 0 8px rgba(139, 222, 157, 0.35);
+}
+
+.fateTrunkLink.next {
+  background: rgba(224, 195, 111, 0.75);
+}
+
+.fateNode {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  border: 1px solid rgba(138, 116, 64, 0.55);
+  border-radius: 2px;
+  background: #12100c;
+  color: #c8ae72;
+  padding: 8px 14px;
+  min-width: 158px;
+  cursor: pointer;
+}
+
+.fateNode strong {
+  color: #e2d3a4;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  line-height: 1.15;
+}
+
+.fateNode small {
+  color: #6f6656;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.fateOrb {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.fateNode.trunk.current {
+  border-color: rgba(143, 185, 154, 0.85);
+  background: radial-gradient(circle at 40% 30%, rgba(61, 90, 72, 0.5), #0e1310 74%);
+}
+
+.fateNode.trunk.current small {
+  color: #8fb99a;
+}
+
+.fateNode.trunk.near {
+  border-color: rgba(224, 195, 111, 0.8);
+  animation: fateBreath 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes fateBreath {
+  from { box-shadow: 0 0 0 rgba(224, 195, 111, 0); }
+  to { box-shadow: 0 0 16px rgba(224, 195, 111, 0.3); }
+}
+
+.fateNode.trunk.closed {
+  opacity: 0.6;
+}
+
+.fateNode.selected {
+  outline: 1px solid rgba(226, 211, 164, 0.9);
+  outline-offset: 2px;
+}
+
+.fateFan {
+  width: 100%;
+  height: 32px;
+  display: block;
+}
+
+.fateFanEdge {
+  fill: none;
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 3 3;
+}
+
+.fateFanEdge.dark {
+  stroke: rgba(176, 113, 138, 0.45);
+}
+
+.fateFanEdge.light {
+  stroke: rgba(127, 181, 151, 0.5);
+}
+
+.fateFanEdge.hl {
+  stroke-width: 2.5px;
+  stroke-dasharray: none;
+}
+
+.fateZones {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.fateZones .dark {
+  color: #a06060;
+}
+
+.fateZones .light {
+  color: #8fb99a;
+}
+
+.fateBranches {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+}
+
+.fateLane {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 5px;
+}
+
+.fateNode.branch {
+  min-width: 0;
+  width: 100%;
+  padding: 8px 3px;
+  background: #0e100e;
+  opacity: 0.85;
+}
+
+.fateNode.branch strong {
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.fateNode.branch .fateOrb {
+  font-size: 12px;
+}
+
+.fateNode.branch.dark {
+  border-color: rgba(176, 113, 138, 0.45);
+}
+
+.fateNode.branch.dark strong {
+  color: #c69090;
+}
+
+.fateNode.branch.light {
+  border-color: rgba(127, 181, 151, 0.5);
+}
+
+.fateNode.branch.light strong {
+  color: #a9d4b4;
+}
+
+.fateLane > small {
+  color: #6f6656;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.fateFog {
+  display: flex;
+  gap: 5px;
+}
+
+.fateFog i {
+  width: 7px;
+  height: 7px;
+  background: rgba(168, 152, 120, 0.32);
+  filter: blur(1px);
+  transform: rotate(45deg);
+  animation: fateFogBreath 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes fateFogBreath {
+  from { opacity: 0.3; }
+  to { opacity: 0.85; }
+}
+
+.fateDistantNote {
+  margin: 0;
+  color: #8f8672;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.fateCeremony {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 10px;
+  background: rgba(4, 6, 5, 0.96);
+  padding: 0 26px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.fateCeremony h3 {
+  margin: 0;
+  color: #fff0bd;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.fateCeremony p {
+  margin: 0;
+  color: #b8b09a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.fateCeremony small {
+  color: #6f6656;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.evolutionTree {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.evolutionTree span {
+  border: 1px solid rgba(219, 188, 109, 0.22);
+  border-radius: 4px;
+  background: rgba(5, 10, 10, 0.62);
+  color: #eadcae;
+  padding: 8px 6px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.abilityList {
+  display: grid;
+  gap: 8px;
+}
+
+.abilityList article {
+  display: grid;
+  gap: 3px;
+  border-left: 2px solid rgba(123, 211, 143, 0.65);
+  background: rgba(6, 14, 13, 0.62);
+  padding: 9px 10px;
+}
+
+.upgrade strong {
+  color: #efd591;
+}
+
+.upgradeList,
+.historyList,
+.screenStack {
+  display: grid;
+  gap: 10px;
+}
+
+.screenStack {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(83, 117, 84, 0.12), transparent 28%),
+    linear-gradient(180deg, #091110, #060a0a);
+}
+
+.upgrade {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 13px;
+}
+
+.historyRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 10px;
+  padding: 12px;
+}
+
+.journalSection {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.notificationSettings {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.notificationSettings > div:first-child {
+  display: grid;
+  gap: 2px;
+}
+
+.notificationSettings strong {
+  color: #ebd39a;
+  font-size: 16px;
+}
+
+.segmentedControl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.segmentedControl button {
+  min-height: 36px;
+  border: 1px solid rgba(215, 184, 103, 0.26);
+  border-radius: 6px;
+  background: rgba(4, 9, 9, 0.68);
+  color: #bdb49b;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.segmentedControl button.active {
+  border-color: rgba(135, 216, 151, 0.58);
+  background: rgba(31, 78, 49, 0.62);
+  color: #e9ffdc;
+}
+
+.reminderGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.reminderGrid label {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.reminderGrid label.disabled {
+  opacity: 0.48;
+}
+
+.reminderGrid span {
+  color: #8f8b7b;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.reminderGrid input {
+  min-width: 0;
+  min-height: 38px;
+  border: 1px solid rgba(215, 184, 103, 0.24);
+  border-radius: 6px;
+  background: rgba(3, 8, 7, 0.72);
+  color: #f0dfad;
+  padding: 7px 9px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.storyLog {
+  display: grid;
+  gap: 3px;
+  border-left: 2px solid rgba(115, 205, 135, 0.6);
+  background: rgba(9, 17, 15, 0.72);
+  padding: 9px 11px;
+}
+
+.storyLog small {
+  color: #8f8b7b;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.storyLog strong {
+  color: #ead491;
+  font-size: 14px;
+}
+
+.storyLog p {
+  color: #aaa590;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.historyRow small {
+  grid-column: 1 / -1;
+  color: #9fe28c;
+}
+
+.bottomTabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding: 0 0 calc(6px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid #3a3428;
+  background: #12100c;
+}
+
+.todayPanel,
+.screenStack,
+.bottomTabs,
+.topBar {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.tab {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  min-height: 56px;
+  border: none;
+  border-top: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: #6f6656;
+  padding: 9px 3px 7px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tabIcon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  color: inherit;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+}
+
+.tab.active {
+  border-top-color: #8a7440;
+  background: transparent;
+  color: #e2d3a4;
+  box-shadow: none;
+}
+
+@media (max-width: 520px) {
+  html,
+  body,
+  #root,
+  .appShell,
+  .phoneFrame {
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .appShell {
+    display: block;
+    min-height: 100svh;
+    padding: 0;
+  }
+
+  .phoneFrame {
+    min-height: 100svh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .topBar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .resources {
+    gap: 5px;
+  }
+
+  .resources span {
+    padding-inline: 7px;
+  }
+
+  .nodeChest {
+    right: 4%;
+  }
+}
+
+@media (max-width: 380px) {
+  .resources {
+    font-size: 11px;
+  }
+
+  .resources span {
+    padding-inline: 7px;
+  }
+
+  .mapArea {
+    height: 400px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .node {
+    min-width: 70px;
+    font-size: 12px;
+  }
+}
+
+/* Layered map vertical slice */
+.mapArea {
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1536 / 2752;
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid rgba(215, 184, 103, 0.22);
+  background: #030606;
+}
+
+.mapArea::before,
+.mapArea::after {
+  display: none;
+}
+
+.mapLayer,
+.mapShade,
+.routeGraph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mapLayer {
+  object-fit: fill;
+  opacity: 0.62;
+  pointer-events: none;
+  user-select: none;
+}
+
+.mapRegionLayer {
+  z-index: 0;
+}
+
+.mapLocationLayer {
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.location-road .mapRegionLayer {
+  filter: saturate(0.72) brightness(0.92) sepia(0.12);
+}
+
+.location-road .mapLocationLayer {
+  filter: saturate(0.62) brightness(1.02) sepia(0.18);
+}
+
+.location-moss .mapRegionLayer {
+  filter: saturate(0.95) brightness(0.78) hue-rotate(18deg);
+}
+
+.location-moss .mapLocationLayer {
+  filter: saturate(1.28) brightness(0.82) hue-rotate(24deg);
+}
+
+.location-grey .mapRegionLayer {
+  filter: saturate(0.45) brightness(0.86) hue-rotate(176deg);
+}
+
+.location-grey .mapLocationLayer {
+  filter: saturate(0.38) brightness(0.96) hue-rotate(188deg);
+}
+
+.location-heartland .mapRegionLayer {
+  filter: saturate(0.66) brightness(0.9) sepia(0.26) hue-rotate(-12deg);
+}
+
+.location-heartland .mapLocationLayer {
+  filter: saturate(0.72) brightness(0.98) sepia(0.32) hue-rotate(-16deg);
+}
+
+.location-ash .mapRegionLayer {
+  filter: saturate(1.05) brightness(0.82) sepia(0.34) hue-rotate(-28deg);
+}
+
+.location-ash .mapLocationLayer {
+  filter: saturate(1.24) brightness(0.9) sepia(0.42) hue-rotate(-34deg);
+}
+
+.location-crown .mapRegionLayer {
+  filter: saturate(0.36) brightness(1.08) hue-rotate(172deg);
+}
+
+.location-crown .mapLocationLayer {
+  filter: saturate(0.3) brightness(1.16) hue-rotate(182deg);
+}
+
+.location-road .mapShade {
+  background: linear-gradient(180deg, rgba(25, 19, 11, 0.2), transparent 18% 72%, rgba(8, 6, 3, 0.7));
+}
+
+.location-moss .mapShade {
+  background: linear-gradient(180deg, rgba(1, 16, 11, 0.28), transparent 18% 70%, rgba(1, 8, 5, 0.72));
+}
+
+.location-grey .mapShade {
+  background:
+    linear-gradient(180deg, rgba(8, 18, 20, 0.34), transparent 16% 70%, rgba(3, 8, 10, 0.74)),
+    radial-gradient(circle at 50% 42%, rgba(182, 199, 191, 0.13), transparent 46%);
+}
+
+.location-heartland .mapShade {
+  background:
+    linear-gradient(180deg, rgba(34, 25, 15, 0.24), transparent 18% 70%, rgba(10, 7, 4, 0.72)),
+    radial-gradient(circle at 50% 44%, rgba(211, 168, 102, 0.09), transparent 50%);
+}
+
+.location-ash .mapShade {
+  background:
+    linear-gradient(180deg, rgba(55, 14, 5, 0.27), transparent 16% 68%, rgba(15, 5, 2, 0.76)),
+    radial-gradient(circle at 50% 34%, rgba(208, 62, 25, 0.12), transparent 48%);
+}
+
+.location-crown .mapShade {
+  background:
+    linear-gradient(180deg, rgba(14, 26, 34, 0.2), transparent 18% 68%, rgba(3, 8, 13, 0.78)),
+    radial-gradient(circle at 50% 36%, rgba(210, 232, 233, 0.16), transparent 46%);
+}
+
+.mapShade {
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 52% 48%, rgba(226, 203, 139, 0.1), transparent 48%),
+    linear-gradient(180deg, rgba(3, 6, 7, 0.5), rgba(8, 10, 8, 0.16) 18% 74%, rgba(2, 4, 4, 0.66)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.38), transparent 18% 82%, rgba(0, 0, 0, 0.38));
+}
+
+.mapHud {
+  position: sticky;
+  z-index: 34;
+  top: 0;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid rgba(215, 184, 103, 0.18);
+  background:
+    linear-gradient(180deg, rgba(5, 10, 10, 0.94), rgba(5, 10, 10, 0.72)),
+    radial-gradient(circle at 20% 0%, rgba(209, 178, 91, 0.12), transparent 42%);
+  padding: 9px 12px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(10px);
+}
+
+.mapTitle {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+  border-left: 2px solid rgba(213, 185, 103, 0.72);
+  padding: 6px 10px;
+  background: linear-gradient(90deg, rgba(4, 8, 9, 0.62), transparent);
+  text-shadow: 0 2px 8px #000;
+}
+
+.mapTitle span {
+  color: #a9a58f;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.mapTitle strong {
+  overflow: hidden;
+  color: #eee1b9;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.worldMapButton {
+  flex: 0 0 auto;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(215, 184, 103, 0.42);
+  border-radius: 999px;
+  background: rgba(4, 9, 9, 0.78);
+  color: #e9d79f;
+  padding: 6px 10px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(6px);
+}
+
+.worldMapButton span {
+  color: #8cdb99;
+  font-size: 15px;
+}
+
+.routeGraph {
+  z-index: 3;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.routeEdge {
+  fill: none;
+  stroke: rgba(63, 51, 38, 0.66);
+  stroke-linecap: round;
+  stroke-width: 4.6;
+  stroke-dasharray: 1 9;
+  opacity: 0.72;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.58));
+  transition: stroke 180ms ease, opacity 180ms ease, stroke-width 180ms ease;
+}
+
+.routeEdge.complete {
+  stroke: rgba(144, 156, 106, 0.68);
+  stroke-width: 3.4;
+  stroke-dasharray: none;
+  opacity: 0.82;
+}
+
+.routeEdge.available {
+  stroke: rgba(232, 205, 129, 0.9);
+  stroke-width: 4.2;
+  stroke-dasharray: 7 6;
+  opacity: 0.95;
+  filter:
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.62))
+    drop-shadow(0 0 4px rgba(224, 190, 92, 0.34));
+}
+
+.routeEdge.active {
+  stroke: rgba(126, 202, 141, 0.9);
+  stroke-width: 4.8;
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 5px rgba(95, 197, 119, 0.62));
+}
+
+.routeEdge.gated {
+  stroke: rgba(142, 125, 91, 0.52);
+  stroke-width: 3.8;
+  stroke-dasharray: 2 10;
+  opacity: 0.8;
+  filter:
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 0 4px rgba(190, 166, 112, 0.18));
+}
+
+.mapNode {
+  position: absolute;
+  z-index: 5;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(106, 90, 52, 0.55);
+  border-radius: 50%;
+  background: rgba(11, 13, 12, 0.92);
+  color: #8e9082;
+  padding: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.mapNode > span {
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.mapNode small {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  display: none;
+  width: max-content;
+  max-width: 120px;
+  border-radius: 999px;
+  background: rgba(3, 7, 7, 0.76);
+  color: #e9dfc0;
+  padding: 4px 7px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 0 1px 4px #000;
+  transform: translateX(-50%);
+}
+
+.mapNode.current {
+  border-color: rgba(143, 185, 154, 0.85);
+  color: #d8efcf;
+  box-shadow: 0 0 12px rgba(93, 190, 116, 0.25);
+}
+
+.mapNode.complete {
+  border-color: rgba(121, 149, 126, 0.5);
+  background: rgba(11, 22, 19, 0.82);
+  color: #77977c;
+}
+
+.mapNode.depleted {
+  border-color: rgba(129, 126, 92, 0.58);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(193, 163, 83, 0.1), transparent 52%),
+    rgba(12, 18, 15, 0.84);
+  color: #a29b72;
+}
+
+.mapNode.available {
+  border-color: rgba(200, 174, 114, 0.9);
+  color: #f0dc9a;
+  box-shadow: 0 0 12px rgba(214, 184, 100, 0.2);
+  cursor: pointer;
+}
+
+.mapNode.active {
+  border-color: #8fb99a;
+  color: #dff7d7;
+  box-shadow: 0 0 14px rgba(97, 200, 117, 0.3);
+}
+
+.mapNode.hinted {
+  border-style: dashed;
+  border-color: rgba(218, 201, 147, 0.58);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(210, 193, 135, 0.12), transparent 52%),
+    rgba(6, 10, 10, 0.78);
+  color: #cdbf8d;
+  opacity: 0.86;
+  cursor: pointer;
+}
+
+.mapNode.selected {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.mapNode,
+.mapNode.locked {
+  width: 52px;
+  height: 52px;
+  border-color: rgba(98, 94, 78, 0.42);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(214, 196, 132, 0.06), transparent 44%),
+    rgba(6, 10, 10, 0.84);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 3px rgba(255, 255, 255, 0.025);
+}
+
+.mapNode.available,
+.mapNode.active,
+.mapNode.current,
+.mapNode.selected {
+  border-color: rgba(229, 201, 119, 0.92);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(232, 205, 128, 0.22), transparent 52%),
+    rgba(9, 15, 14, 0.92);
+}
+
+.mapNode.complete {
+  border-color: rgba(120, 174, 126, 0.72);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(112, 189, 125, 0.18), transparent 52%),
+    rgba(9, 20, 17, 0.88);
+}
+
+.mapNode.role-cache {
+  border-radius: 12px;
+}
+
+.mapNode.role-rest {
+  color: #f0bb73;
+}
+
+.mapNode.role-threat,
+.mapNode.role-trial {
+  color: #e0a08b;
+}
+
+.mapNode.role-memory {
+  color: #efe4ff;
+}
+
+.mapNode.role-finale {
+  border-width: 2px;
+}
+
+.mapNode > span {
+  position: relative;
+  z-index: 1;
+}
+
+.mapNode.available small,
+.mapNode.active small,
+.mapNode.current small,
+.mapNode.selected small,
+.mapNode.hinted small {
+  display: block;
+}
+
+.mapNode.locked {
+  opacity: 0.5;
+}
+
+.mapNode.locked > span {
+  opacity: 0.9;
+  filter: saturate(0.72);
+}
+
+.mapNode:disabled {
+  cursor: default;
+}
+
+.mapNode:focus-visible {
+  outline: 2px solid #fff2b9;
+  outline-offset: 4px;
+}
+
+.mapHero {
+  position: absolute;
+  z-index: 7;
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 7px 5px rgba(0, 0, 0, 0.72));
+  transform: translate(-50%, -88%);
+  transition: left 900ms cubic-bezier(0.22, 0.75, 0.22, 1), top 900ms cubic-bezier(0.22, 0.75, 0.22, 1);
+  will-change: left, top;
+}
+
+.mapHero.travelling {
+  filter:
+    drop-shadow(0 7px 5px rgba(0, 0, 0, 0.72))
+    drop-shadow(0 0 8px rgba(111, 227, 137, 0.58));
+}
+
+.mapLegend {
+  position: absolute;
+  z-index: 8;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 9px;
+  border: 1px solid rgba(205, 181, 112, 0.18);
+  border-radius: 999px;
+  background: rgba(3, 7, 7, 0.72);
+  padding: 6px 8px;
+  color: #aaa58f;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.mapLegend span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legendDot {
+  width: 7px;
+  height: 7px;
+  display: inline-block;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.legendDot.complete {
+  color: #77977c;
+  background: rgba(119, 151, 124, 0.35);
+}
+
+.legendDot.available {
+  color: #e1c46f;
+  box-shadow: 0 0 5px rgba(225, 196, 111, 0.5);
+}
+
+.routePanel {
+  display: grid;
+  gap: 12px;
+  padding: 17px 18px 18px;
+  border-bottom: 1px solid rgba(215, 184, 103, 0.16);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(92, 143, 91, 0.11), transparent 28%),
+    linear-gradient(180deg, rgba(9, 15, 15, 0.99), rgba(5, 9, 9, 0.99));
+}
+
+.routeHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.routeHeading h1 {
+  font-size: 24px;
+  line-height: 1.08;
+}
+
+.routeHeading > strong {
+  flex: 0 0 auto;
+  color: #e4cc87;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+.routeDescription {
+  color: #b8b09a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.routeMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #b8b09a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.routeBar {
+  height: 7px;
+}
+
+.primaryBtn:disabled {
+  border-color: rgba(126, 181, 126, 0.38);
+  background: rgba(28, 52, 38, 0.78);
+  color: #a8c4a5;
+  box-shadow: none;
+}
+
+.dailyStrip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 18px;
+  background: #060a0a;
+}
+
+.dailyStrip > div {
+  min-width: 0;
+}
+
+.dailyStrip strong,
+.dailyStrip small {
+  display: block;
+}
+
+.dailyStrip strong {
+  color: #eaddb6;
+  font-size: 15px;
+}
+
+.dailyStrip small {
+  margin-top: 3px;
+  overflow: hidden;
+  color: #8f8b7b;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dailySaved {
+  color: #aeda9e;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+@media (max-width: 380px) {
+  .mapNode {
+    width: 44px;
+    height: 44px;
+  }
+
+  .mapNode small {
+    max-width: 94px;
+    font-size: 8px;
+  }
+
+  .mapHero {
+    width: 38px;
+    height: 38px;
+  }
+
+  .routeHeading h1 {
+    font-size: 21px;
+  }
+}
+
+/* Single-screen map layout */
+.resources span {
+  display: grid;
+  gap: 1px;
+}
+
+.resources small {
+  color: #8f8b7b;
+  font-size: 8px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.mapContent {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 132px;
+}
+
+.mapScreen {
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 0;
+}
+
+.mapScreen .mapArea {
+  width: 100%;
+  min-height: max(760px, calc(100svh - 170px));
+}
+
+.mapScreen .mapArea {
+  height: auto;
+  aspect-ratio: 1536 / 2752;
+}
+
+.routeEdge.selected {
+  stroke: #93dfa3;
+  stroke-width: 5;
+  stroke-dasharray: none;
+  filter:
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.62))
+    drop-shadow(0 0 6px rgba(91, 225, 123, 0.78));
+}
+
+.mapNode.selected {
+  border-color: rgba(144, 232, 160, 0.94);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(152, 239, 166, 0.24), transparent 54%),
+    rgba(9, 18, 15, 0.96);
+  color: #efffdc;
+  box-shadow:
+    0 0 0 6px rgba(91, 225, 123, 0.16),
+    0 0 22px rgba(91, 225, 123, 0.76),
+    inset 0 0 12px rgba(153, 244, 171, 0.28);
+  transform: translate(-50%, -50%) scale(1.14);
+}
+
+.mapScreen .routePanel {
+  position: fixed;
+  z-index: 30;
+  left: 50%;
+  bottom: calc(74px + env(safe-area-inset-bottom, 0px));
+  width: min(386px, calc(100vw - 18px));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 8px 9px 8px 12px;
+  border: 1px solid rgba(215, 184, 103, 0.38);
+  border-radius: 8px;
+  background: rgba(4, 9, 9, 0.92);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.52);
+  backdrop-filter: blur(10px);
+  transform: translateX(-50%);
+}
+
+.mapScreen .routeHeading {
+  min-width: 0;
+  align-items: center;
+}
+
+.mapScreen .routeHeading h1 {
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mapScreen .routeDescription {
+  display: -webkit-box;
+  max-width: 232px;
+  margin-top: 3px;
+  overflow: hidden;
+  color: #c5bea5;
+  font-size: 10px;
+  line-height: 1.2;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.routeHint {
+  display: block;
+  max-width: 232px;
+  margin-top: 3px;
+  overflow: hidden;
+  color: #a9a48f;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+}
+
+.mapScreen .routeHeading > strong {
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.routeActions {
+  display: grid;
+  gap: 5px;
+  min-width: 96px;
+}
+
+.routeActions .primaryBtn {
+  min-height: 36px;
+  padding: 7px 10px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+}
+
+.routeActions .routeBar {
+  height: 4px;
+}
+
+.arrivalOverlay {
+  position: absolute;
+  z-index: 40;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(1, 5, 5, 0.7);
+  backdrop-filter: blur(7px);
+  animation: arrivalFade 180ms ease-out both;
+}
+
+.storyOverlay {
+  position: absolute;
+  z-index: 48;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: calc(18px + env(safe-area-inset-top, 0px)) 18px calc(18px + env(safe-area-inset-bottom, 0px));
+  background: rgba(1, 4, 5, 0.9);
+  backdrop-filter: blur(10px);
+  animation: arrivalFade 180ms ease-out both;
+}
+
+.storyEncounter {
+  width: min(360px, 100%);
+  max-height: 100%;
+  overflow-y: auto;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  border: 1px solid rgba(143, 184, 157, 0.5);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(64, 121, 98, 0.28), transparent 40%),
+    linear-gradient(180deg, #0d1717, #040808);
+  padding: 21px 17px 17px;
+  text-align: center;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.78), inset 0 0 40px rgba(100, 172, 127, 0.05);
+  animation: arrivalRise 260ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+
+.storyEncounter.trial {
+  border-color: rgba(201, 155, 93, 0.55);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(126, 73, 40, 0.28), transparent 42%),
+    linear-gradient(180deg, #171310, #080605);
+}
+
+.storyArt {
+  width: calc(100% + 34px);
+  height: clamp(150px, 24vh, 205px);
+  margin: -21px -17px 2px;
+  border-radius: 15px 15px 5px 5px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: inset 0 -20px 28px rgba(4, 8, 8, 0.5);
+}
+
+.storyEncounter:has(.storyArt) .storySigil {
+  margin-top: -34px;
+  z-index: 1;
+}
+
+.nightOverlay {
+  z-index: 52;
+}
+
+.nightEncounter {
+  border-color: rgba(178, 145, 87, 0.58);
+  background:
+    radial-gradient(circle at 50% 8%, rgba(146, 84, 39, 0.26), transparent 38%),
+    linear-gradient(180deg, #17120e, #070706);
+}
+
+.nightArt {
+  width: 112px;
+  height: 92px;
+  margin-bottom: -20px;
+  object-fit: contain;
+  filter: drop-shadow(0 13px 12px rgba(0, 0, 0, 0.62));
+}
+
+.nightEncounter .storySigil {
+  border-color: rgba(235, 193, 111, 0.72);
+  background: rgba(94, 53, 25, 0.78);
+  color: #ffe4a9;
+  box-shadow: 0 0 22px rgba(226, 149, 71, 0.28);
+}
+
+.lockpickOverlay {
+  z-index: 50;
+}
+
+.lockpickEncounter {
+  border-color: rgba(113, 166, 154, 0.58);
+  background:
+    radial-gradient(circle at 50% 4%, rgba(56, 105, 104, 0.34), transparent 38%),
+    linear-gradient(180deg, #101817, #050908);
+}
+
+.lockpickEncounter .storySigil {
+  border-color: rgba(139, 205, 190, 0.72);
+  background: rgba(28, 69, 66, 0.78);
+  color: #d8fff0;
+  box-shadow: 0 0 22px rgba(95, 197, 173, 0.28);
+}
+
+.lockpickBoard {
+  position: relative;
+  width: 100%;
+  height: 226px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(177, 210, 187, 0.24);
+  border-radius: 6px;
+  background:
+    linear-gradient(90deg, rgba(235, 228, 185, 0.03) 0 1px, transparent 1px 33.33%),
+    radial-gradient(circle at 50% 30%, rgba(126, 171, 156, 0.14), transparent 44%),
+    rgba(3, 9, 9, 0.78);
+  padding: 14px;
+  touch-action: manipulation;
+}
+
+.lockpickBoard:disabled {
+  opacity: 1;
+}
+
+.lockpickFace {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  width: 74px;
+  height: 74px;
+  border: 1px solid rgba(139, 205, 190, 0.16);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(10, 18, 17, 0.94) 0 34%, transparent 35%),
+    conic-gradient(from 20deg, rgba(139, 205, 190, 0.12), rgba(255, 226, 136, 0.16), rgba(139, 205, 190, 0.12));
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.5), 0 0 20px rgba(95, 197, 173, 0.1);
+  transform: translate(-50%, -50%);
+  transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+
+.lockpickFace i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 25px;
+  border-radius: 999px 999px 3px 3px;
+  background: rgba(236, 220, 153, 0.8);
+  box-shadow: 0 0 12px rgba(236, 220, 153, 0.28);
+  transform: translate(-50%, -28%);
+}
+
+.lockpickBoard.feedback-good .lockpickFace {
+  border-color: rgba(237, 219, 143, 0.68);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.48), 0 0 24px rgba(237, 219, 143, 0.24);
+  transform: translate(-50%, -50%) rotate(5deg);
+}
+
+.lockpickBoard.feedback-perfect .lockpickFace {
+  border-color: rgba(184, 255, 182, 0.82);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.44), 0 0 30px rgba(128, 219, 145, 0.34);
+  transform: translate(-50%, -50%) rotate(12deg) scale(1.03);
+}
+
+.lockpickBoard.feedback-miss .lockpickFace {
+  border-color: rgba(198, 102, 88, 0.64);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.5), 0 0 22px rgba(198, 102, 88, 0.22);
+  transform: translate(-50%, -50%) rotate(-7deg) scale(0.98);
+}
+
+.lockpickSuccess {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  z-index: 4;
+  pointer-events: none;
+  border: 1px solid rgba(255, 235, 156, 0.82);
+  border-radius: 4px;
+  background:
+    linear-gradient(180deg, rgba(255, 239, 171, 0.08), rgba(255, 222, 111, 0.34), rgba(255, 239, 171, 0.08));
+  box-shadow:
+    0 0 0 1px rgba(255, 247, 199, 0.12),
+    0 0 22px rgba(238, 204, 105, 0.42),
+    inset 0 0 18px rgba(255, 233, 149, 0.16);
+  transform: translateY(-50%);
+}
+
+.lockpickSuccess::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: rgba(255, 242, 183, 0.86);
+  box-shadow: 0 0 13px rgba(255, 229, 135, 0.72);
+  transform: translateY(-50%);
+}
+
+.lockpickPin {
+  position: relative;
+  z-index: 1;
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(160, 190, 177, 0.24);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.18)),
+    rgba(6, 15, 14, 0.86);
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.46);
+}
+
+.lockpickPin::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  border-radius: 999px;
+  background: rgba(198, 214, 185, 0.16);
+  transform: translateX(-50%);
+}
+
+.lockpickPin i {
+  position: absolute;
+  left: 50%;
+  width: 32px;
+  height: 16px;
+  border: 1px solid rgba(242, 225, 164, 0.76);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f1d98f, #95723b);
+  box-shadow: 0 0 14px rgba(228, 199, 117, 0.28);
+  transform: translate(-50%, -50%);
+}
+
+.lockpickPin.active {
+  border-color: rgba(232, 213, 138, 0.58);
+}
+
+.lockpickBoard.feedback-good .lockpickPin.active,
+.lockpickPin.good {
+  border-color: rgba(237, 219, 143, 0.74);
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.46), 0 0 18px rgba(237, 219, 143, 0.14);
+}
+
+.lockpickBoard.feedback-perfect .lockpickPin.active,
+.lockpickPin.perfect {
+  border-color: rgba(184, 255, 182, 0.82);
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.46), 0 0 22px rgba(128, 219, 145, 0.24);
+}
+
+.lockpickBoard.feedback-miss .lockpickPin.active,
+.lockpickPin.miss {
+  border-color: rgba(198, 102, 88, 0.7);
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.46), 0 0 18px rgba(198, 102, 88, 0.16);
+}
+
+.lockpickPin.perfect i {
+  border-color: rgba(184, 255, 182, 0.9);
+  background: linear-gradient(180deg, #d7ffc3, #74b76b);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.lockpickPin.good i {
+  border-color: rgba(237, 219, 143, 0.9);
+  transform: translate(-50%, -50%) scale(1.03);
+}
+
+.lockpickPin.miss i {
+  border-color: rgba(198, 102, 88, 0.8);
+  background: linear-gradient(180deg, #cf7b67, #70342d);
+  transform: translate(-50%, -50%) scale(0.92);
+}
+
+.lockpickPin small {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.48);
+  color: #d7d0b7;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.battleOverlay {
+  z-index: 51;
+}
+
+.battleEncounter {
+  border-color: rgba(185, 118, 86, 0.58);
+  background:
+    radial-gradient(circle at 50% 4%, rgba(117, 55, 49, 0.34), transparent 38%),
+    linear-gradient(180deg, #171212, #070606);
+}
+
+.battleEncounter .storySigil {
+  border-color: rgba(231, 159, 111, 0.72);
+  background: rgba(88, 39, 34, 0.78);
+  color: #ffe0c6;
+  box-shadow: 0 0 22px rgba(224, 112, 76, 0.28);
+}
+
+.battleStatus {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.battleStatus span {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+  border: 1px solid rgba(221, 177, 121, 0.18);
+  border-radius: 6px;
+  background: rgba(6, 10, 10, 0.68);
+  color: #ffe2ad;
+  padding: 7px 5px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.battleStatus small {
+  overflow: hidden;
+  color: #a99b83;
+  font-size: 8px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.battleIntent {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  border: 1px solid rgba(229, 199, 119, 0.28);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 10% 50%, rgba(229, 199, 119, 0.16), transparent 48%),
+    rgba(6, 10, 10, 0.72);
+  padding: 9px 10px;
+  text-align: left;
+}
+
+.battleIntent > span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(229, 199, 119, 0.32);
+  border-radius: 50%;
+  background: rgba(18, 18, 15, 0.86);
+  color: #ffe1ad;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.battleIntent div {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.battleIntent small {
+  color: #bda984;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.battleIntent strong {
+  color: #fff0bd;
+  font-size: 13px;
+}
+
+.battleIntent p {
+  margin: 0;
+  color: #d7c5a0;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.battleBoard {
+  width: min(100%, 310px);
+  aspect-ratio: 1;
+  display: grid;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid rgba(221, 177, 121, 0.22);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(105, 41, 38, 0.2), transparent 50%),
+    rgba(4, 7, 8, 0.76);
+  touch-action: none;
+  user-select: none;
+}
+
+.battleTile {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(217, 190, 136, 0.24);
+  border-radius: 7px;
+  background: rgba(10, 15, 16, 0.92);
+  color: #ead79c;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.44);
+  touch-action: none;
+}
+
+.battleTile:disabled {
+  opacity: 1;
+}
+
+.battleTile i {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-style: normal;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.battleTile.attack i {
+  background: rgba(138, 51, 45, 0.74);
+  color: #ffd0bc;
+}
+
+.battleTile.guard i {
+  background: rgba(55, 91, 95, 0.76);
+  color: #c8f1ed;
+}
+
+.battleTile.flame i {
+  background: rgba(127, 87, 35, 0.78);
+  color: #ffe3a6;
+}
+
+.battleTile.break i {
+  background: rgba(79, 66, 121, 0.78);
+  color: #dfd5ff;
+}
+
+.battleTile.selected {
+  border-color: rgba(242, 211, 137, 0.82);
+  background: rgba(41, 33, 24, 0.96);
+  box-shadow: 0 0 0 2px rgba(232, 192, 105, 0.14), inset 0 0 16px rgba(244, 199, 110, 0.12);
+}
+
+.battleTile.intentFocus {
+  border-color: rgba(255, 230, 155, 0.52);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.44), 0 0 13px rgba(229, 199, 119, 0.12);
+}
+
+.battleTile.intentFocus i {
+  box-shadow: 0 0 0 2px rgba(255, 231, 168, 0.12);
+}
+
+.battleTile.intentFocus.selected {
+  border-color: rgba(255, 237, 181, 0.92);
+  box-shadow: 0 0 0 2px rgba(232, 192, 105, 0.18), 0 0 18px rgba(229, 199, 119, 0.2), inset 0 0 16px rgba(244, 199, 110, 0.14);
+}
+
+.battleTile.lead i {
+  box-shadow: 0 0 0 2px rgba(255, 231, 168, 0.24);
+}
+
+.battleTile.empowered::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  margin-top: -9px;
+  border-radius: 50%;
+  background: #9cf0a0;
+  box-shadow: 0 0 9px rgba(156, 240, 160, 0.75);
+}
+
+.battleChains {
+  width: 100%;
+  min-height: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.battleChains span {
+  border: 1px solid rgba(220, 183, 116, 0.22);
+  border-radius: 999px;
+  background: rgba(5, 9, 9, 0.74);
+  color: #ddcfaa;
+  padding: 4px 7px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.battleActions {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 7px;
+}
+
+.battleActions .primaryBtn,
+.battleActions .ghostBtn {
+  min-height: 40px;
+  padding: 9px 10px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+}
+
+.battleOutcome {
+  display: inline-flex;
+  justify-self: center;
+  border: 1px solid rgba(229, 199, 119, 0.48);
+  border-radius: 999px;
+  background: rgba(8, 13, 12, 0.72);
+  color: #e8d9a6;
+  padding: 5px 10px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.battleOutcome.good,
+.battleOutcome.perfect {
+  border-color: rgba(128, 219, 145, 0.62);
+  color: #c9f7c5;
+  box-shadow: 0 0 15px rgba(105, 213, 124, 0.18);
+}
+
+.battleOutcome.weak {
+  border-color: rgba(225, 178, 104, 0.54);
+  color: #f0d19b;
+}
+
+.battleRewardNotice {
+  width: 100%;
+  display: grid;
+  gap: 3px;
+  border: 1px solid rgba(229, 199, 119, 0.44);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(229, 199, 119, 0.18), transparent 58%),
+    rgba(8, 13, 12, 0.78);
+  padding: 10px 12px;
+  box-shadow: inset 0 0 18px rgba(229, 199, 119, 0.08);
+}
+
+.battleRewardNotice small {
+  color: #a99b83;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.battleRewardNotice strong {
+  color: #fff0bd;
+  font-size: 18px;
+}
+
+.battleRewardNotice span {
+  color: #e8d9a6;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.battleRewardNotice.good,
+.battleRewardNotice.perfect {
+  border-color: rgba(128, 219, 145, 0.58);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(109, 222, 129, 0.22), transparent 58%),
+    rgba(8, 15, 12, 0.82);
+}
+
+.battleRewardNotice.good span,
+.battleRewardNotice.perfect span {
+  color: #c9f7c5;
+}
+
+.becomingOverlay {
+  z-index: 54;
+}
+
+.becomingEncounter {
+  border-color: rgba(147, 216, 169, 0.62);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(125, 213, 143, 0.28), transparent 42%),
+    radial-gradient(circle at 20% 24%, rgba(224, 195, 111, 0.14), transparent 34%),
+    linear-gradient(180deg, #101a17, #050908);
+}
+
+.becomingEncounter .storySigil {
+  border-color: rgba(154, 235, 173, 0.78);
+  background: rgba(31, 83, 54, 0.82);
+  color: #eaffd6;
+  box-shadow: 0 0 24px rgba(120, 224, 141, 0.34);
+}
+
+.becomingShardCard {
+  width: 100%;
+  display: grid;
+  gap: 4px;
+  border: 1px solid rgba(139, 222, 157, 0.28);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(139, 222, 157, 0.16), transparent 60%),
+    rgba(4, 10, 9, 0.72);
+  padding: 12px;
+}
+
+.becomingShardCard small {
+  color: #92d69e;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.becomingShardCard strong {
+  color: #fff0bd;
+  font-size: 18px;
+}
+
+.becomingShardCard span {
+  color: #c1baa5;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.becomingActions {
+  width: 100%;
+  display: grid;
+  gap: 8px;
+}
+
+.becomingActions .primaryBtn,
+.becomingActions .secondaryBtn,
+.becomingActions .ghostBtn {
+  min-height: 40px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+}
+
+.battleReportOverlay {
+  z-index: 53;
+}
+
+.battleReportNotice {
+  border-color: rgba(205, 137, 96, 0.58);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(134, 61, 52, 0.24), transparent 42%),
+    linear-gradient(180deg, #171211, #060707);
+}
+
+.battleReportNotice .arrivalMeaning small {
+  color: #f0d19b;
+}
+
+.ghostBtn {
+  border: 1px solid rgba(204, 181, 122, 0.34);
+  border-radius: 999px;
+  background: rgba(7, 12, 12, 0.72);
+  color: #d9caa1;
+  font-weight: 900;
+}
+
+.ghostBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.storyEncounter h2 {
+  color: #fff0bd;
+  font-size: 25px;
+}
+
+.storySigil {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(139, 222, 157, 0.7);
+  border-radius: 50%;
+  background: rgba(18, 70, 48, 0.72);
+  color: #dfffd8;
+  font-size: 21px;
+  box-shadow: 0 0 22px rgba(89, 211, 124, 0.3);
+}
+
+.trial .storySigil {
+  border-color: rgba(224, 182, 111, 0.76);
+  background: rgba(91, 53, 27, 0.74);
+  color: #ffe3aa;
+  box-shadow: 0 0 22px rgba(220, 151, 75, 0.26);
+}
+
+.storyScene,
+.storyResult p {
+  color: #c1baa5;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  line-height: 1.48;
+}
+
+.storyChoices {
+  width: 100%;
+  display: grid;
+  gap: 7px;
+}
+
+.storyChoices button {
+  display: grid;
+  gap: 3px;
+  border: 1px solid rgba(193, 176, 116, 0.28);
+  border-radius: 8px;
+  background: rgba(8, 15, 14, 0.86);
+  color: #ead79c;
+  padding: 10px 11px;
+  text-align: left;
+}
+
+.storyChoices button:active {
+  border-color: #d8bb68;
+  background: rgba(32, 52, 42, 0.92);
+}
+
+.storyChoices span {
+  color: #aaa590;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  line-height: 1.32;
+}
+
+.storyChoices small,
+.storyResult > span {
+  color: #8dde9a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.storyResult {
+  width: 100%;
+  display: grid;
+  gap: 8px;
+}
+
+.storyResult > strong {
+  color: #efd58c;
+  font-size: 19px;
+}
+
+.storyResult .primaryBtn {
+  margin-top: 5px;
+}
+
+.worldMapOverlay {
+  position: fixed;
+  z-index: 45;
+  inset: 0;
+  background: #040808;
+  animation: arrivalFade 180ms ease-out both;
+}
+
+.worldMap {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(49, 94, 74, 0.2), transparent 40%),
+    linear-gradient(180deg, #0b1413, #040808);
+  padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+}
+
+.worldMapHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px 10px;
+}
+
+.worldMapHeader h2 {
+  color: #fff0bd;
+  font-size: 24px;
+}
+
+.worldMapViewport {
+  position: relative;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-x pan-y;
+  scrollbar-width: none;
+  border-top: 1px solid rgba(215, 184, 103, 0.2);
+  border-bottom: 1px solid rgba(215, 184, 103, 0.2);
+  background: #07100f;
+}
+
+.worldMapViewport::-webkit-scrollbar {
+  display: none;
+}
+
+.worldMapCanvas {
+  position: relative;
+  width: max(230%, 920px);
+  aspect-ratio: 16 / 9;
+  min-height: 100%;
+  overflow: hidden;
+  background: #07100f;
+}
+
+.worldMapCanvas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(2, 5, 5, 0.16), transparent 20% 78%, rgba(2, 5, 5, 0.48));
+}
+
+.worldMapArt,
+.worldRouteGraph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.worldMapArt {
+  z-index: 0;
+  object-fit: cover;
+}
+
+.worldRouteGraph {
+  z-index: 2;
+  pointer-events: none;
+}
+
+.worldRoute {
+  stroke: rgba(190, 181, 145, 0.28);
+  stroke-linecap: round;
+  stroke-width: 2.1;
+  stroke-dasharray: 1 7;
+}
+
+.worldRoute.future {
+  stroke: rgba(142, 138, 118, 0.16);
+  stroke-width: 1.8;
+  stroke-dasharray: 1 10;
+}
+
+.worldRoute.complete {
+  stroke: rgba(118, 190, 132, 0.68);
+  stroke-dasharray: none;
+}
+
+.worldRoute.available {
+  stroke: rgba(225, 195, 105, 0.78);
+  stroke-width: 2.8;
+  filter: drop-shadow(0 0 3px rgba(220, 188, 94, 0.42));
+}
+
+.worldNode {
+  position: absolute;
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  justify-items: center;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #a8a18c;
+  padding: 0;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.worldNode i {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(204, 183, 119, 0.4);
+  border-radius: 50%;
+  background: #08100f;
+  color: #d9c780;
+  font-style: normal;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.46);
+}
+
+.worldNode strong {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 50%;
+  display: none;
+  width: max-content;
+  max-width: 128px;
+  border-radius: 999px;
+  background: rgba(2, 6, 6, 0.86);
+  color: #e8dcb7;
+  padding: 4px 7px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  line-height: 1.15;
+  transform: translateX(-50%);
+}
+
+.worldNode.selected { z-index: 5; }
+.worldNode.selected strong { display: block; }
+.worldNode.selected i { transform: scale(1.2); }
+
+.worldNode.current i,
+.worldNode.complete i {
+  border-color: #83d995;
+  color: #dcffd5;
+  box-shadow: 0 0 20px rgba(91, 225, 123, 0.36);
+}
+
+.worldNode.available i {
+  border-color: #e0c36f;
+  box-shadow: 0 0 20px rgba(224, 195, 111, 0.34);
+}
+
+.worldNode.role-region-entry i {
+  border-radius: 10px;
+}
+
+.worldNode.role-connector i {
+  border-color: rgba(153, 191, 179, 0.5);
+}
+
+.worldNode.role-key-landmark i {
+  border-width: 2px;
+}
+
+.worldNode.locked-known,
+.worldNode.future {
+  opacity: 0.82;
+  filter: grayscale(0.72);
+}
+
+.worldNode.locked-known i,
+.worldNode.future i {
+  width: 24px;
+  height: 24px;
+  border-color: rgba(219, 206, 160, 0.62);
+  background: rgba(7, 13, 12, 0.9);
+  color: #817b67;
+  box-shadow: 0 0 0 2px rgba(2, 5, 5, 0.42), 0 2px 5px rgba(0, 0, 0, 0.72);
+}
+
+.worldNode.future {
+  opacity: 0.56;
+}
+
+.worldNode.future i {
+  border-style: dashed;
+  border-color: rgba(186, 178, 138, 0.4);
+  color: #605c50;
+}
+
+.worldSelection {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 12px;
+}
+
+.worldSelection strong {
+  display: block;
+  overflow: hidden;
+  color: #efe1b6;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.worldSelection small {
+  margin-top: 3px;
+  overflow: hidden;
+  color: #aaa28a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.devOverlay {
+  position: absolute;
+  z-index: 50;
+  inset: 0;
+  display: grid;
+  align-items: end;
+  background: rgba(1, 4, 4, 0.72);
+  backdrop-filter: blur(6px);
+  animation: arrivalFade 160ms ease-out both;
+}
+
+.devPanel {
+  max-height: calc(100% - env(safe-area-inset-top, 0px) - 18px);
+  overflow-y: auto;
+  display: grid;
+  gap: 14px;
+  border: 1px solid rgba(215, 184, 103, 0.42);
+  border-bottom: 0;
+  border-radius: 18px 18px 0 0;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(77, 131, 85, 0.16), transparent 26%),
+    linear-gradient(180deg, #0c1514, #050909);
+  padding: 18px 16px calc(18px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -22px 60px rgba(0, 0, 0, 0.65);
+  animation: devRise 220ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+
+.devHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.devHeader h2 {
+  color: #fff1c2;
+  font-size: 23px;
+}
+
+.devClose {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(216, 190, 119, 0.28);
+  border-radius: 50%;
+  background: rgba(3, 7, 7, 0.7);
+  color: #d6cba9;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.devStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.devStats span {
+  display: grid;
+  gap: 2px;
+  border: 1px solid rgba(215, 184, 103, 0.2);
+  border-radius: 6px;
+  background: rgba(4, 9, 9, 0.64);
+  padding: 8px 5px;
+  color: #8f8b7b;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.devStats strong {
+  color: #eddaa3;
+  font-size: 13px;
+}
+
+.devSection {
+  display: grid;
+  gap: 8px;
+}
+
+.devSection > strong {
+  color: #c7ba94;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.devActions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.devActions button,
+.devFooter button {
+  min-height: 44px;
+  border: 1px solid rgba(215, 184, 103, 0.3);
+  border-radius: 6px;
+  background: rgba(15, 25, 23, 0.92);
+  color: #e5d9b6;
+  padding: 7px 8px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.devActions button:active,
+.devFooter button:active {
+  background: rgba(43, 71, 56, 0.9);
+  transform: translateY(1px);
+}
+
+.devActions button:disabled {
+  opacity: 0.4;
+}
+
+.devFooter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  padding-top: 3px;
+}
+
+.devFooter > :only-child {
+  grid-column: 1 / -1;
+}
+
+.devFooter .dangerGhost {
+  border-color: rgba(184, 100, 79, 0.35);
+  background: transparent;
+  color: #c59d91;
+}
+
+.devFooter .dangerBtn {
+  border-color: #aa6856;
+  background: #6f3028;
+  color: #fff0e8;
+}
+
+@keyframes devRise {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.arrivalNotice {
+  width: min(360px, 100%);
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  border: 1px solid rgba(225, 196, 111, 0.52);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(86, 154, 93, 0.24), transparent 42%),
+    linear-gradient(180deg, #0d1815, #050a09);
+  padding: 24px 20px 18px;
+  text-align: center;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.72), inset 0 0 32px rgba(123, 193, 115, 0.06);
+  animation: arrivalRise 280ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+
+.arrivalNotice h2 {
+  color: #fff0bd;
+  font-size: 27px;
+}
+
+.arrivalNotice p {
+  color: #b8b09a;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.arrivalNotice .primaryBtn {
+  margin-top: 6px;
+}
+
+.pointEventNotice {
+  width: min(350px, 100%);
+  max-height: 100%;
+  overflow-y: auto;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 14px 14px 16px;
+}
+
+.pointEventNotice h2 {
+  font-size: 22px;
+}
+
+.pointEventNotice p {
+  font-size: 12px;
+}
+
+.pointEventArt {
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  border: 1px solid rgba(221, 197, 127, 0.22);
+  border-radius: 7px;
+  object-fit: cover;
+  object-position: center;
+  background: rgba(4, 9, 8, 0.82);
+  box-shadow: inset 0 -20px 28px rgba(4, 8, 8, 0.44);
+}
+
+.pointEventNotice .arrivalIcon {
+  width: 44px;
+  height: 44px;
+  margin-top: -30px;
+  z-index: 1;
+  font-size: 19px;
+}
+
+.pointChoiceGrid {
+  width: 100%;
+  display: grid;
+  gap: 7px;
+}
+
+.pointChoiceGrid button {
+  display: grid;
+  gap: 3px;
+  border: 1px solid rgba(154, 204, 166, 0.28);
+  border-radius: 7px;
+  background: rgba(4, 13, 11, 0.72);
+  color: #efe5bf;
+  padding: 9px;
+  text-align: left;
+}
+
+.pointChoiceGrid strong {
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.pointChoiceGrid span {
+  color: #bbb49c;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.crossingMiniGame {
+  width: 100%;
+  display: grid;
+  gap: 8px;
+}
+
+.crossingTrack {
+  position: relative;
+  height: 42px;
+  overflow: hidden;
+  border: 1px solid rgba(169, 212, 179, 0.25);
+  border-radius: 7px;
+  background:
+    linear-gradient(90deg, rgba(230, 219, 166, 0.08) 0 1px, transparent 1px 12.5%),
+    rgba(3, 9, 8, 0.76);
+}
+
+.crossingSafeZone {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  border: 1px solid rgba(255, 231, 142, 0.72);
+  border-radius: 5px;
+  background: rgba(222, 190, 96, 0.22);
+  box-shadow: 0 0 18px rgba(224, 186, 84, 0.28);
+}
+
+.crossingMarker {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  border-radius: 999px;
+  background: #d9fff0;
+  box-shadow: 0 0 14px rgba(136, 239, 206, 0.72);
+  transform: translateX(-50%);
+}
+
+.crossingSteps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.crossingSteps span {
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(154, 204, 166, 0.22);
+  border-radius: 999px;
+  background: rgba(3, 8, 7, 0.62);
+  color: #a9b29e;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.crossingSteps span.good,
+.crossingSteps span.perfect {
+  border-color: rgba(255, 221, 126, 0.58);
+  color: #ffe6a0;
+}
+
+.crossingSteps span.weak {
+  border-color: rgba(178, 111, 92, 0.45);
+  color: #d6a08f;
+}
+
+.areaSearchMiniGame {
+  width: 100%;
+  display: grid;
+  gap: 8px;
+}
+
+.areaSearchScene {
+  position: relative;
+  min-height: 174px;
+  overflow: hidden;
+  border: 1px solid rgba(169, 212, 179, 0.25);
+  border-radius: 7px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(121, 183, 145, 0.16), transparent 30%),
+    radial-gradient(circle at 70% 68%, rgba(220, 190, 102, 0.12), transparent 28%),
+    linear-gradient(145deg, rgba(8, 24, 19, 0.94), rgba(4, 9, 9, 0.96));
+}
+
+.areaSearchScene button {
+  position: absolute;
+  width: min(112px, 34%);
+  min-height: 42px;
+  display: grid;
+  gap: 2px;
+  border: 1px solid rgba(154, 204, 166, 0.34);
+  border-radius: 7px;
+  background: rgba(5, 13, 12, 0.82);
+  color: #efe5bf;
+  padding: 7px;
+  text-align: left;
+  transform: translate(-50%, -50%);
+}
+
+.areaSearchScene button.found {
+  border-color: rgba(255, 222, 126, 0.72);
+  background: rgba(72, 57, 21, 0.86);
+  box-shadow: 0 0 18px rgba(224, 186, 84, 0.22);
+}
+
+.areaSearchScene strong,
+.areaSearchScene span {
+  display: block;
+  overflow-wrap: anywhere;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  letter-spacing: 0;
+}
+
+.areaSearchScene strong {
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.areaSearchScene span {
+  color: #bbb49c;
+  font-size: 9px;
+  line-height: 1.25;
+}
+
+.areaSearchProgress {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.areaSearchProgress span {
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(154, 204, 166, 0.22);
+  border-radius: 999px;
+  background: rgba(3, 8, 7, 0.62);
+  color: #a9b29e;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.areaSearchProgress span.found {
+  border-color: rgba(255, 221, 126, 0.58);
+  color: #ffe6a0;
+}
+
+.arrivalMeaning {
+  width: 100%;
+  display: grid;
+  gap: 4px;
+  border: 1px solid rgba(139, 222, 157, 0.22);
+  border-radius: 8px;
+  background: rgba(3, 8, 7, 0.56);
+  padding: 10px;
+  text-align: left;
+}
+
+.arrivalMeaning strong {
+  color: #efd591;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.arrivalMeaning span,
+.arrivalMeaning small {
+  color: #c1baa5;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.arrivalMeaning small {
+  color: #8dde9a;
+  font-weight: 800;
+}
+
+.arrivalRewards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: center;
+}
+
+.arrivalRewards span {
+  border: 1px solid rgba(215, 184, 103, 0.24);
+  border-radius: 999px;
+  background: rgba(3, 8, 7, 0.65);
+  color: #dbc990;
+  padding: 6px 9px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.arrivalRewards img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.arrivalRewards span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.arrivalArt {
+  width: 112px;
+  height: 74px;
+  margin: -6px 0 -4px;
+  object-fit: contain;
+  filter: drop-shadow(0 9px 10px rgba(0, 0, 0, 0.5));
+}
+
+.arrivalIcon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #8cdb99;
+  border-radius: 50%;
+  background: rgba(21, 72, 45, 0.75);
+  color: #eaffd6;
+  font-size: 23px;
+  box-shadow: 0 0 24px rgba(91, 225, 123, 0.34);
+}
+
+@keyframes arrivalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes arrivalRise {
+  from { opacity: 0; transform: translateY(14px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.campWallet {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.campWallet > span {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(219, 188, 109, 0.25);
+  border-radius: 6px;
+  background: rgba(10, 17, 16, 0.88);
+  padding: 9px 10px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+}
+
+.campWallet i {
+  color: #d9c06e;
+  font-style: normal;
+}
+
+.campWallet i img {
+  width: 28px;
+  height: 28px;
+  display: block;
+  object-fit: contain;
+}
+
+.campArt {
+  width: 76px;
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.52));
+}
+
+.campWallet small {
+  color: #a8a18b;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.campWallet strong {
+  color: #f1dea4;
+  font-size: 15px;
+}
+
+.nightJournal {
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(196, 154, 88, 0.25);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(133, 74, 34, 0.17), transparent 42%),
+    rgba(9, 14, 13, 0.9);
+  padding: 12px;
+}
+
+.nightJournal > div {
+  display: grid;
+  gap: 2px;
+}
+
+.nightJournal > div > strong {
+  color: #ebd39a;
+  font-size: 16px;
+}
+
+.nightJournal article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 8px;
+  border-top: 1px solid rgba(204, 175, 106, 0.14);
+  padding-top: 8px;
+}
+
+.nightJournal time {
+  color: #7f7c70;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+}
+
+.nightJournal article strong {
+  color: #d9c68f;
+  font-size: 12px;
+}
+
+.nightJournal article p {
+  grid-column: 1 / -1;
+  color: #a9a28e;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.upgradeCopy {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.upgradeTitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.upgradeTitle > span {
+  flex: 0 0 auto;
+  color: #8f8b7b;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.upgradeTitle strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.upgradeTitle strong i {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(219, 188, 109, 0.34);
+  border-radius: 50%;
+  color: #d9c06e;
+  font-size: 11px;
+  font-style: normal;
+}
+
+.upgradeTrack {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+  margin: 5px 0 2px;
+}
+
+.upgradeTrack::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 12%;
+  left: 12%;
+  height: 1px;
+  background: rgba(197, 179, 121, 0.22);
+}
+
+.upgradeTrack > span {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  color: #716f65;
+  text-align: center;
+}
+
+.upgradeTrack i {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: #09100f;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.upgradeTrack small {
+  max-width: 100%;
+  overflow: hidden;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 7px;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upgradeTrack .complete {
+  color: #87c78c;
+}
+
+.upgradeTrack .complete i {
+  background: rgba(50, 105, 67, 0.72);
+  box-shadow: 0 0 8px rgba(76, 179, 103, 0.34);
+}
+
+.upgradeTrack .next {
+  color: #e0c36f;
+}
+
+.upgradeTrack .next i {
+  box-shadow: 0 0 10px rgba(224, 195, 111, 0.4);
+}
+
+.upgradeCost {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 9px;
+  margin-top: 5px;
+  font-family: Inter, 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.upgradeCost small {
+  width: 100%;
+  color: #817d70;
+  font-size: 8px;
+  text-transform: uppercase;
+}
+
+.upgradeCost span {
+  color: #d9cdac;
+}
+
+.upgradeCost .missing {
+  color: #b58e78;
+}
+
+.upgrade button:disabled {
+  opacity: 0.58;
+}
+
+@media (max-width: 520px) {
+  .phoneFrame {
+    height: 100svh;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+  }
+
+  .topBar {
+    padding: calc(8px + env(safe-area-inset-top, 0px)) 12px 8px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .identity {
+    gap: 9px;
+  }
+
+  .identity strong {
+    font-size: 14px;
+  }
+
+  .resources {
+    font-size: 11px;
+  }
+
+  .resources span {
+    min-width: 64px;
+    padding: 6px 7px;
+  }
+
+  .bottomTabs {
+    gap: 4px;
+    padding: 5px 7px calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .tab {
+    min-height: 43px;
+    gap: 1px;
+    padding: 4px 2px;
+    font-size: 10px;
+  }
+
+  .tabIcon {
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .mapScreen .routeHeading > strong {
+    display: none;
+  }
+
+  .routeActions {
+    min-width: 96px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mapHero,
+  .arrivalOverlay,
+  .arrivalNotice,
+  .storyOverlay,
+  .storyEncounter,
+  .devOverlay,
+  .devPanel {
+    animation: none;
+    transition: none;
+  }
+}
